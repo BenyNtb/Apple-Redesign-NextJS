@@ -5,6 +5,7 @@ import { urlFor } from '../sanity';
 import { useDispatch } from "react-redux";
 import { addToBasket } from '../redux/basketSlice';
 import toast from 'react-hot-toast';
+import Currency from "react-currency-formatter";
 
 interface Props {
     product: Product;
@@ -27,7 +28,7 @@ function Product({product}: Props) {
             <div className='flex flex-1 items-center justify-between space-x-3'>
                 <div className='space-y-2 text-xl text-white md:text-2xl'>
                     <p>{product.title}</p>
-                    <p>{product.price} €</p>
+                    <Currency quantity = {product.price} currency="EUR"/>
                 </div>
                 <div className='flex h-16 w-16 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-violet-500 md:h-[70px] md:w-[70px]' onClick={addItemToBasket}>
                     <ShoppingCartIcon className='h-8 w-8 text-white'/>
