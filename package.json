@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.3",
+    "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^1.0.6",
     "@portabletext/react": "^1.0.6",
     "@reduxjs/toolkit": "^1.8.6",
@@ -17,7 +17,7 @@
     "next-auth-sanity": "^1.4.4",
     "next-sanity": "^1.0.0",
     "react": "18.1.0",
-    "react-currency-formatter": "^1.1.0",
+    "react-currency-formatter": "^1.0.0",
     "react-dom": "18.1.0",
     "react-flags-select": "^2.2.3",
     "react-hot-toast": "^2.4.0",
