@@ -32,7 +32,7 @@ const Home = ({categories, products}: Props) => {
   const t = locale === 'en' ? en : fr;
 
   return (
-    <div >
+    <div>
       <Head>
         <title>Apple Redesign</title>
         <link rel="icon" href="/favicon.ico" />
