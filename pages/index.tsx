@@ -50,7 +50,7 @@ const Home = ({categories, products}: Props) => {
           {t.newpromos}
           </h1>
           <Tab.Group>
-            <Tab.List className="flex justify-center">
+            <Tab.List className="justify-center sm:w-72 inline-flex">
               {categories.map((category) => (
                 <Tab 
                 key={category._id} 
