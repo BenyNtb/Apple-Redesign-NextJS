@@ -34,7 +34,7 @@ const Home = ({categories, products}: Props) => {
   return (
     <div>
       <Head>
-        <title>Apple Redesign</title>
+        <title>Apple Design Concept</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
