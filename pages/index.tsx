@@ -1,17 +1,17 @@
 import { Tab } from '@headlessui/react';
 import type { NextPage, GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Basket from './components/Basket';
-import Header from './components/Header';
-import Landing from './components/Landing';
-import Product from './components/Product';
-import { fetchCategories } from './pages/utils/fetchCategories';
-import { fetchProducts } from './pages/utils/fetchProducts';
+import Basket from '../components/Basket';
+import Header from '../components/Header';
+import Landing from '../components/Landing';
+import Product from '../components/Product';
+import { fetchCategories } from '../utils/fetchCategories';
+import { fetchProducts } from '../utils/fetchProducts';
 import { getSession } from "next-auth/react";
 import type { Session } from "next-auth";
 import { useRouter } from "next/router";
-import en from './locales/en';
-import fr from './locales/fr';
+import en from '../locales/en';
+import fr from '../locales/fr';
 
 interface Props{
   categories: Category[];
