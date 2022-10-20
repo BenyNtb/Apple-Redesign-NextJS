@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Button from '../components/Button';
+import Button from './components/Button';
 import Currency from "react-currency-formatter";
 import { GetServerSideProps } from 'next';
-import { fetchLineItems } from './utils/fetchLineItems';
+import { fetchLineItems } from './pages/utils/fetchLineItems';
 import { useSession } from "next-auth/react";
-import en from '../locales/en';
-import fr from '../locales/fr';
+import en from './locales/en';
+import fr from './locales/fr';
 import ReactFlagsSelect from "react-flags-select";
 
 

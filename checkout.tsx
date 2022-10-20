@@ -1,20 +1,20 @@
 import Head from "next/head";
-import Header from "../components/Header";
-import { selectBasketItems, selectBasketTotal } from "../redux/basketSlice";
+import Header from "./components/Header";
+import { selectBasketItems, selectBasketTotal } from "./redux/basketSlice";
 import { useSelector } from "react-redux";
-import Button from "../components/Button";
+import Button from "./components/Button";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import CheckoutProduct from "../components/CheckoutProduct";
+import CheckoutProduct from "./components/CheckoutProduct";
 import Currency from "react-currency-formatter";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import Stripe from "stripe";
-import { fetchPostJSON } from "./utils/api-helpers";
-import getStripe from "./utils/get-stripejs";
+import { fetchPostJSON } from "./pages/utils/api-helpers";
+import getStripe from "./pages/utils/get-stripejs";
 import Link from 'next/link'
-import en from '../locales/en';
-import fr from '../locales/fr';
-import Footer from '../components/Footer';
+import en from './locales/en';
+import fr from './locales/fr';
+import Footer from './components/Footer';
 
 function checkout() {
     const items = useSelector(selectBasketItems);
