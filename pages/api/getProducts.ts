@@ -9,7 +9,7 @@ const query = groq `*[_type == "product"] {
     ...
 } | order(_createdAt asc)`;
 type Data = {
-  categories: Product[]
+  products: Product[]
 }
 
 export default async function handler(
