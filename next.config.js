@@ -8,4 +8,5 @@ module.exports = {
     locales: ['EN', 'FR'],
     defaultLocale: 'EN',
   },
+  pageExtensions:['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 };
