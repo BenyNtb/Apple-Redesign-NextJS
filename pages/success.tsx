@@ -68,7 +68,7 @@ function Success({products}: Props) {
                     customLabels={{ US: "EN", FR: "FR" }}
                     fullWidth={false}
                     showOptionLabel={false}
-                    selected={selectedFlag}
+                    selected={selectedFlag || "US"}
                     rfsKey="app-lang"
                     onSelect={changeLanguage}
                     placeholder={locale}
