@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { SearchIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/outline';
 import { useSelector } from "react-redux";
 import { selectBasketItems } from "../redux/basketSlice";
 import { signIn, signOut, useSession } from "next-auth/react"
+import { useRouter } from 'next/router';
+import en from '../locales/en';
+import fr from '../locales/fr';
+import ReactFlagsSelect from "react-flags-select";
+
+
 
 function Header() {
 const {data: session} = useSession();
 const items = useSelector(selectBasketItems);
+const router = useRouter();
+const { locale } = router;
+const t = locale === 'en' ? en : fr;
+const changeLanguage = (code: string) => {
+    const locale = (code === "US") ? "EN" : code;
+    setSelectedFlag(code);
+    router.push(router.pathname, router.asPath, { locale });
+    };
+
+    const [selectedFlag, setSelectedFlag] = useState((locale === "en") ? "US" : locale?.toUpperCase());
 
     return (
         <header className='sticky top-0 z-30 flex w-full items-end justify-between bg-[#E7ECEE] p-4'>
@@ -23,9 +39,9 @@ const items = useSelector(selectBasketItems);
                 </Link>
             </div>
             <div className='hidden flex-1 items-center justify-center space-x-8 md:flex'>
-                <a href="" className="headerLink">Product</a>
-                <a href="" className="headerLink cursor-not-allowed">Explore</a>
-                <a href="" className="headerLink cursor-not-allowed">Support</a>
+                <a href="" className="headerLink">{t.product}</a>
+                <a href="" className="headerLink cursor-not-allowed">{t.explore}</a>
+                <a href="" className="headerLink cursor-not-allowed">{t.support}</a>
                 <a href="" className="headerLink cursor-not-allowed">Business</a>
             </div>
             <div className='flex items-center justify-center gap-x-4 md:w-1/5'>
@@ -57,6 +73,24 @@ const items = useSelector(selectBasketItems);
                         onClick={() => signIn()}
                         />
                 )}
+                <ReactFlagsSelect
+                    countries={["US", "FR"]}
+                    customLabels={{ US: "EN", FR: "FR" }}
+                    fullWidth={false}
+                    showOptionLabel={false}
+                    selected={selectedFlag}
+                    rfsKey="app-lang"
+                    onSelect={changeLanguage}
+                    placeholder={locale}
+                    />
+                {/* <select
+                    onChange={changeLanguage}
+                    defaultValue={locale}
+                    className="opacity-75 text-shadow-sm text-lg bg-transparent tracking-wide">
+                    <option className="usaFlag text-black w-40 h-40" value="en" >EN </option>
+                    <option className="frenchFlag text-black" value="fr">FR</option>
+                </select> */}
+                
             </div>
         </header>
     )

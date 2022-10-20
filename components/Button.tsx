@@ -1,3 +1,6 @@
+import { useRouter } from "next/router";
+import en from '../locales/en';
+import fr from '../locales/fr';
 interface Props{
     title: string;
     onClick?: () => void;
@@ -7,6 +10,9 @@ interface Props{
     noIcon?: boolean;
 }
 function Button({title, onClick, width, loading, padding, noIcon}: Props) {
+    const router = useRouter();
+  const {locale} = router;
+  const t = locale === 'en' ? en : fr;
   return (
     <button className={`ease group relative z-30 box-border inline-flex ${
         width ? width : "w-auto"
@@ -32,7 +38,7 @@ function Button({title, onClick, width, loading, padding, noIcon}: Props) {
                 ></path>
             </svg>
             )}
-            {loading ? "Loading ..." : title}
+            {loading ? `${t.loading}` : title}
         </span>
     </button>
   );

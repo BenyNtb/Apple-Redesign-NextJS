@@ -6,6 +6,9 @@ import { useDispatch } from "react-redux";
 import { addToBasket } from '../redux/basketSlice';
 import toast from 'react-hot-toast';
 import Currency from "react-currency-formatter";
+import { useRouter } from "next/router";
+import en from '../locales/en';
+import fr from '../locales/fr';
 
 interface Props {
     product: Product;
@@ -16,10 +19,13 @@ function Product({product}: Props) {
     const addItemToBasket = () => {
         dispatch(addToBasket(product));
 
-        toast.success(`${product.title} added to basket`, {
+        toast.success(`${product.title} ${t.basket}`, {
             position: "bottom-center",
         });
     }
+    const router = useRouter();
+    const {locale} = router;
+    const t = locale === 'en' ? en : fr;
     return (
         <div className='flex h-fit w-[320px] select-none flex-col space-y-3 rounded-xl bg-[#35383C] p-8 md:h-[500px] md:w-[400px] md:p-10' id='product'>
             <div className='relative h-64 w-full md:h-72'>

@@ -10,6 +10,9 @@ import Currency from "react-currency-formatter";
 import { GetServerSideProps } from 'next';
 import { fetchLineItems } from './utils/fetchLineItems';
 import { useSession } from "next-auth/react";
+import en from '../locales/en';
+import fr from '../locales/fr';
+import ReactFlagsSelect from "react-flags-select";
 
 
 interface Props {
@@ -36,6 +39,15 @@ function Success({products}: Props) {
   const handleShowOrderSummary = () => {
     setShowOrderSummary(!showOrderSummary);
   };
+  const { locale } = router;
+  const t = locale === 'en' ? en : fr;
+  const changeLanguage = (code: string) => {
+    const locale = (code === "US") ? "EN" : code;
+    setSelectedFlag(code);
+    router.push(router.pathname, router.asPath, { locale });
+    };
+
+    const [selectedFlag, setSelectedFlag] = useState((locale === "en") ? "US" : locale?.toUpperCase());
 
   return (
     <div>
@@ -43,7 +55,25 @@ function Success({products}: Props) {
         <title>Thank you! - Apple</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className='mx-auto max-w-xl'>
+      <header className='flex relative mx-auto max-w-xl'>
+      {/* <select
+                    onChange={changeLanguage}
+                    defaultValue={locale}
+                    className="opacity-75 text-shadow-sm text-lg bg-transparent tracking-wide absolute left-72 top-20">
+                    <option className="text-black" value="en">EN</option>
+                    <option className="text-black" value="fr">FR</option>
+            </select> */}
+            <ReactFlagsSelect
+                    countries={["US", "FR"]}
+                    customLabels={{ US: "EN", FR: "FR" }}
+                    fullWidth={false}
+                    showOptionLabel={false}
+                    selected={selectedFlag}
+                    rfsKey="app-lang"
+                    onSelect={changeLanguage}
+                    placeholder={locale}
+                    className="absolute left-72 top-20"
+                    />
         <Link href= "/">
           <div className='relative ml-4 h-16 w-8 cursor-pointer transition lg:hidden'>
             <Image 
@@ -72,34 +102,34 @@ function Success({products}: Props) {
             <div>
               <p className='text-sm text-gray-600'>Order #{session_id?.slice(-5)}</p>
               <h4 className='text-lg'>
-                Thank you {" "}
-                {session ? session.user?.name?.split("")[0] : "Guest"}
+                {t.thankyou} {" "}
+                {session ? session.user?.name?.split("") : "Guest"}
               </h4>
             </div>
           </div>
           <div className='mx-4 divide-y divide-gray-300 rounded-md border border-gray-300 p-4 lg:ml-14'>
             <div className='space-y-2 pb-3'>
-              <p>Your order is confirmed</p>
+              <p>{t.orderconfirmed}</p>
               <p className='text-sm text-gray-600'>
-                We've accepted your order, and we're getting it ready. Come back to this page for updates on your shipment status.
+                {t.accepted}
               </p>
             </div>
             <div className='pt-3 text-sm'>
-              <p className='font-medium text-gray-600'>Other tracking number</p>
+              <p className='font-medium text-gray-600'>{t.tracking}</p>
               <p>CNB21441622</p>
             </div>
           </div>
           <div className='my-4 mx-4 space-y-2 rounded-md border border-gray-300 p-4 lg:ml-14'>
-            <p>Order updates</p>
+            <p>{t.updates}</p>
             <p className='text-sm text-gray-600'>
-              You'll get shipping and delivery updates by email and text
+              {t.deliveryupdates}
             </p>
           </div>
           <div className='mx-4 flex flex-col items-center justify-between text-sm lg:ml-14 lg:flex-row'>
-            <p className='hidden lg:inline'>Need help ? Contact us</p>
+            <p className='hidden lg:inline'>{t.help}</p>
             {mounted && (
               <Button
-              title='Continue Shopping'
+              title={t.continueshopping}
               onClick={() => router.push("/")}
               width={isTabletOrMobile ? "w-full" : undefined}
               padding="py-4"
@@ -113,7 +143,7 @@ function Success({products}: Props) {
               <div className='mx-auto flex max-w-xl items-center justify-between px-4 py-6'>
                 <button onClick={handleShowOrderSummary} className='flex items-center space-x-2'>
                   <ShoppingCartIcon className='h-6 w-6'/>
-                  <p>Show your order summary</p>
+                  <p>{t.showreview}</p>
                   {showOrderSummaryCondition ? (
                     <ChevronUpIcon className='h-4 w-4' />
                   ) : (
@@ -147,17 +177,17 @@ function Success({products}: Props) {
                 </div>
                 <div className='space-y-1 py-4'>
                   <div className='flex justify-between text-sm'>
-                    <p className='text-[gray]'>Subtotal</p>
+                    <p className='text-[gray]'>{t.subtotal}</p>
                     <p className='font-medium'>
                       <Currency quantity={subtotal} currency="EUR"/>
                       </p>
                   </div>
                   <div className='flex justify-between text-sm'>
-                    <p className='text-[gray]'>Discount</p>
+                    <p className='text-[gray]'>{t.discount}</p>
                     <p className='text-[gray]'></p>
                   </div>
                   <div className='flex justify-between text-sm'>
-                    <p className='text-[gray]'>Shipping</p>
+                    <p className='text-[gray]'>{t.shipping}</p>
                     <p className='font-medium'>
                       <Currency quantity={20} currency="EUR"/>
                     </p>

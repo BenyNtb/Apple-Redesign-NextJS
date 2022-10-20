@@ -2,6 +2,10 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["rb.gy", "cdn.sanity.io", "lh3.googleusercontent.com", "store.storeimages.cdn-apple.com"],
+    domains: ["rb.gy", "cdn.sanity.io", "lh3.googleusercontent.com", "store.storeimages.cdn-apple.com", "img.icons8.com"],
+  },
+  i18n: {
+    locales: ['EN', 'FR'],
+    defaultLocale: 'EN',
   },
 };

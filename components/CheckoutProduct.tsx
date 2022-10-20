@@ -5,6 +5,9 @@ import Currency from "react-currency-formatter";
 import {removeFromBasket} from "../redux/basketSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
+import en from '../locales/en';
+import fr from '../locales/fr';
 
 
 interface Props {
@@ -16,10 +19,14 @@ function CheckoutProduct({id, items} : Props) {
     const dispatch = useDispatch()
     const removeItemFromBasket = () => {
         dispatch(removeFromBasket({id}));
-        toast.error(`${items[0].title} removed from basket`, {
+        toast.success(`${items[0].title} ${t.removed}`, {
             position: "bottom-center",
         });
     };
+    const router = useRouter();
+    const {locale} = router;
+    const t = locale === 'en' ? en : fr;
+
     return (
         <div className="flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center">
             <div className="relative h-44 w-44">
@@ -35,7 +42,7 @@ function CheckoutProduct({id, items} : Props) {
                         </p>
                     </div>
                     <p className="flex cursor-not-allowed items-end text-blue-500 hover:underline ">
-                        Show product details
+                        {t.details}
                         <ChevronDownIcon className="h-6 w-6"/>
                     </p>
                 </div>
@@ -48,7 +55,7 @@ function CheckoutProduct({id, items} : Props) {
                     <button
                         onClick={removeItemFromBasket}
                         className="text-blue-500 hover:underline">
-                        Remove
+                        {t.remove}
                     </button>
                 </div>
             </div>

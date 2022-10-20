@@ -2,8 +2,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Button from './Button'
+import { useRouter } from "next/router";
+import en from '../locales/en';
+import fr from '../locales/fr';
 
 function Landing() {
+    const router = useRouter();
+  const {locale} = router;
+  const t = locale === 'en' ? en : fr;
+  
   return (
     <section className="sticky top-0 mx-auto flex h-screen max-w-[1350px] items-center justify-between px-8">
         <div className="space-y-8">
@@ -14,9 +21,9 @@ function Landing() {
             </h1>
             <div className='space-x-8'>
                 <Link href="#product">
-                    <Button title="Buy Now"/>
+                    <Button title={t.buynow}/>
                 </Link>
-                <a className='link cursor-not-allowed'>Learn More</a>
+                <a className='link cursor-not-allowed'>{t.learnmore}</a>
             </div>
         </div>
         <div className='relative hidden h-[450px] w-[450px] transition-all duration-500 md:inline lg:h-[650px] lg:w-[600px]'>

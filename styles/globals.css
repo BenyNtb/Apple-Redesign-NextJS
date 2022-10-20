@@ -33,4 +33,9 @@
     .fontAppleFooter {
         font-family: 'Comfortaa', cursive;
     }
+    /* usaFlag {
+        background-image: url ('../public/united-states-flag-icon.svg');
+        width: 50px;
+        height: 50px;
+    } */
 }

@@ -9,6 +9,9 @@ import { fetchCategories } from './utils/fetchCategories';
 import { fetchProducts } from './utils/fetchProducts';
 import { getSession } from "next-auth/react";
 import type { Session } from "next-auth";
+import { useRouter } from "next/router";
+import en from '../locales/en';
+import fr from '../locales/fr';
 
 interface Props{
   categories: Category[];
@@ -23,14 +26,17 @@ const Home = ({categories, products}: Props) => {
     return products.filter((product) => product.category._ref === categories[category]._id).map((product) =>(
       <Product product={product} key={product._id}/>
     ))
-  } 
+  }
+  const router = useRouter();
+  const {locale} = router;
+  const t = locale === 'en' ? en : fr;
+
   return (
     <div >
       <Head>
         <title>Apple Redesign</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Header/>
 
       <Basket/>
@@ -41,7 +47,7 @@ const Home = ({categories, products}: Props) => {
       <section className='relative z-40 -mt-[100vh] min-h-screen bg-[#1B1B1B]' id='product'>
         <div className='space-y-10 py-16'>
           <h1 className='text-center text-4xl font-medium tracking-wide text-white md:text-5xl'>
-          New Promos
+          {t.newpromos}
           </h1>
           <Tab.Group>
             <Tab.List className="flex justify-center">
