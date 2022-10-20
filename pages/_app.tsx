@@ -5,7 +5,9 @@ import { store } from '../redux/store';
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react"
 
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  
   return (
     <SessionProvider session={session}>
       <Provider store={store}>

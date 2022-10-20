@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import Button from './Button'
 
@@ -12,8 +13,10 @@ function Landing() {
                 <span className="block">Driven By Values</span>
             </h1>
             <div className='space-x-8'>
-                <Button title="Buy Now"/>
-                <a className='link'>Learn More</a>
+                <Link href="#product">
+                    <Button title="Buy Now"/>
+                </Link>
+                <a className='link cursor-not-allowed'>Learn More</a>
             </div>
         </div>
         <div className='relative hidden h-[450px] w-[450px] transition-all duration-500 md:inline lg:h-[650px] lg:w-[600px]'>

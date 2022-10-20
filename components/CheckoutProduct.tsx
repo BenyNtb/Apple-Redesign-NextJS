@@ -34,7 +34,7 @@ function CheckoutProduct({id, items} : Props) {
                             <ChevronDownIcon className="h-6 w-6 text-blue-500"/>
                         </p>
                     </div>
-                    <p className="flex cursor-pointer items-end text-blue-500 hover:underline">
+                    <p className="flex cursor-not-allowed items-end text-blue-500 hover:underline ">
                         Show product details
                         <ChevronDownIcon className="h-6 w-6"/>
                     </p>

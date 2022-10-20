@@ -24,12 +24,12 @@ const items = useSelector(selectBasketItems);
             </div>
             <div className='hidden flex-1 items-center justify-center space-x-8 md:flex'>
                 <a href="" className="headerLink">Product</a>
-                <a href="" className="headerLink">Explore</a>
-                <a href="" className="headerLink">Support</a>
-                <a href="" className="headerLink">Business</a>
+                <a href="" className="headerLink cursor-not-allowed">Explore</a>
+                <a href="" className="headerLink cursor-not-allowed">Support</a>
+                <a href="" className="headerLink cursor-not-allowed">Business</a>
             </div>
             <div className='flex items-center justify-center gap-x-4 md:w-1/5'>
-                <SearchIcon className="headerIcon"/>
+                <SearchIcon className="headerIcon cursor-not-allowed"/>
                 <Link href="/checkout">
                     <div className='relative cursor-pointer'>
                         {items.length > 0 && (

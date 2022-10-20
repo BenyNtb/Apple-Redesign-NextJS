@@ -38,7 +38,7 @@ const Home = ({categories, products}: Props) => {
       <main className='relative h-[200vh] bg-[#E7ECEE]'>
         <Landing/>
       </main>
-      <section className='relative z-40 -mt-[100vh] min-h-screen bg-[#1B1B1B]'>
+      <section className='relative z-40 -mt-[100vh] min-h-screen bg-[#1B1B1B]' id='product'>
         <div className='space-y-10 py-16'>
           <h1 className='text-center text-4xl font-medium tracking-wide text-white md:text-5xl'>
           New Promos
@@ -67,6 +67,8 @@ const Home = ({categories, products}: Props) => {
                 <Tab.Panel className="tabPanel">{showProducts(1)}</Tab.Panel>
                 <Tab.Panel className="tabPanel">{showProducts(2)}</Tab.Panel>
                 <Tab.Panel className="tabPanel">{showProducts(3)}</Tab.Panel>
+                <Tab.Panel className="tabPanel">{showProducts(4)}</Tab.Panel>
+                <Tab.Panel className="tabPanel">{showProducts(5)}</Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
