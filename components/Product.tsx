@@ -9,9 +9,10 @@ import Currency from "react-currency-formatter";
 import { useRouter } from "next/router";
 import en from '../locales/en';
 import fr from '../locales/fr';
+import {Product as ProductType} from '../typings';
 
 interface Props {
-    product: Product;
+    product: ProductType;
 }
 
 function Product({product}: Props) {
