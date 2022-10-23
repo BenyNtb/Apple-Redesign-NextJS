@@ -1,4 +1,4 @@
-import common from '../public/locales/en/common.ts'
+import common from '../public/locales/en/common.json'
 
 interface Category {
     _id: string;

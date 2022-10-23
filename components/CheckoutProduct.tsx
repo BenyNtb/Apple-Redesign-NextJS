@@ -6,10 +6,9 @@ import {removeFromBasket} from "../redux/basketSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import en from '../locales/en';
 import { Product as ProductType } from "../typings";
-import fr from '../locales/fr';
-
+import { useTranslation } from "next-i18next";
+import en from "../public/locales/en/common.json";
 
 interface CheckoutProductProps {
     items : ProductType[];
@@ -18,6 +17,7 @@ interface CheckoutProductProps {
 
 function CheckoutProduct({id, items} : CheckoutProductProps) {
     const dispatch = useDispatch()
+    const t = en; // good
     const removeItemFromBasket = () => {
         dispatch(removeFromBasket({id}));
         toast.success(`${items[0].title} ${t.removed}`, {
@@ -26,7 +26,7 @@ function CheckoutProduct({id, items} : CheckoutProductProps) {
     };
     const router = useRouter();
     const {locale} = router;
-    const t = locale === 'en' ? en : fr;
+    
 
     return (
         <div className="flex flex-col gap-x-4 border-b border-gray-300 pb-5 lg:flex-row lg:items-center">

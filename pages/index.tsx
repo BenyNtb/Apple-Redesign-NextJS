@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import type { NextPage, GetServerSideProps, GetStaticProps } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import Basket from "../components/Basket";
 import Header from "../components/Header";
@@ -23,8 +23,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ categories, products }) => {
-  console.log(products);
-
+  
   const showProducts = (category: number) => {
     return products
       .filter((product) => product.category._ref === categories[category]._id)
@@ -92,32 +91,17 @@ export default Home;
 
 //Backend Side
 
-// export const getServerSideProps: GetServerSideProps<HomeProps> = async (context) => {
-//   const products = await fetchProducts();
-//   const categories = await fetchCategories();
-//   const session = await getSession(context)
-
-//   return {
-//     props: {
-//       categories,
-//       products,
-//       session,
-//       ...(await serverSideTranslations(locale || 'en'))
-//     },
-//   };
-// }
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async (context) => {
   const products = await fetchProducts();
   const categories = await fetchCategories();
-  const session = await getSession();
+  const session = await getSession(context)
 
   return {
     props: {
       categories,
       products,
       session,
-      ...(await serverSideTranslations(locale || "en", ["common"])),
+      ...(await serverSideTranslations(context.locale || "en", ['common', 'footer'], null, ['en', 'no'])),
     },
   };
-};
+}

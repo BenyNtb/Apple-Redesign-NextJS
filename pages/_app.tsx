@@ -5,23 +5,32 @@ import { store } from "../redux/store";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
-import { appWithTranslation } from "next-i18next";
-import {FC} from "react"
+import { appWithTranslation,SSRConfig } from "next-i18next";
+import { FC } from "react";
 
 type MyAppProps = {
   session: Session;
 };
 
-function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
+const MyApp = ({ Component, pageProps }: AppProps<MyAppProps & SSRConfig>) => {
   return (
     // Higher order component
+    <Provider store={store}>
+      <Toaster />
+      <Component {...pageProps} />
+    </Provider>
+  );
+};
+
+const AppWithI18n = appWithTranslation(MyApp as FC);
+
+const AppWithSession = (props: AppProps<MyAppProps & SSRConfig>) => {
+  const { pageProps } = props;
+  console.log(props)
+  return (
     <SessionProvider session={pageProps.session}>
-      <Provider store={store}>
-        <Toaster />
-        <Component {...pageProps} />
-      </Provider>
+      <AppWithI18n {...props} />
     </SessionProvider>
   );
-}
-
-export default appWithTranslation(MyApp as FC);
+};
+export default AppWithSession;

@@ -128,7 +128,7 @@ function checkout() {
                                 </p>
                             </div>
                             <div className="flex flex-1 flex-col items-center space-y-8 rounded-xl bg-gray-200 p-8 py-12 md:order-2">
-                                <h4 className="mb-4 flex flex-col text-xl font-semibold">
+                                <h4 className="mb-4 contents flex-col text-xl font-semibold">
                                     {t.full}
                                     <span>
                                         <Currency quantity={basketTotal} currency="EUR"/>
