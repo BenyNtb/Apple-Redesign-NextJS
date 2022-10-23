@@ -1,3 +1,5 @@
+import common from '../public/locales/en/common.ts'
+
 interface Category {
     _id: string;
     _createdAt: string;
@@ -52,4 +54,8 @@ interface StripeProduct {
     price: {
         unit_amount: number;
     };
+}
+
+interface Resources {
+    common: typeof common
 }

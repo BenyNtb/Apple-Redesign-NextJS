@@ -5,8 +5,8 @@ module.exports = {
     domains: ["rb.gy", "cdn.sanity.io", "lh3.googleusercontent.com", "store.storeimages.cdn-apple.com", "img.icons8.com"],
   },
   i18n: {
-    locales: ['EN', 'FR'],
-    defaultLocale: 'EN',
+    locales: ['en', 'fr'],
+    defaultLocale: 'en',
   },
   // pageExtensions:['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 };

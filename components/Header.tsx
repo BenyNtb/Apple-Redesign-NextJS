@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { SearchIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/outline';
+import { SearchIcon, ShoppingBagIcon, SunIcon, UserIcon } from '@heroicons/react/outline';
 import { useSelector } from "react-redux";
 import { selectBasketItems } from "../redux/basketSlice";
 import { signIn, signOut, useSession } from "next-auth/react"
@@ -12,6 +12,7 @@ import ReactFlagsSelect from "react-flags-select";
 
 
 
+
 function Header() {
 const {data: session} = useSession();
 const items = useSelector(selectBasketItems);
@@ -19,15 +20,18 @@ const router = useRouter();
 const { locale } = router;
 const t = locale === 'en' ? en : fr;
 const changeLanguage = (code: string) => {
-    const locale = (code === "US") ? "EN" : code;
+    const prod = (code === "US") ? "EN" : code;
     setSelectedFlag(code);
-    router.push(router.pathname, router.asPath, { locale });
+    const localeLang = {
+        locale: prod
+        };
+    console.log(locale);
+    router.push(router.pathname, router.asPath, localeLang);
     };
-
-    const [selectedFlag, setSelectedFlag] = useState((locale === "en") ? "US" : locale?.toUpperCase());
+const [selectedFlag, setSelectedFlag] = useState((locale === "en") ? "US" : locale?.toUpperCase());
 
     return (
-        <header className='sticky top-0 z-30 flex w-full items-end justify-between bg-[#E7ECEE] p-4'>
+        <header className='sticky top-0 z-30 flex w-full items-end justify-between  p-4'>
             <div className='flex items-center justify-center md:w-1/5'>
                 <Link href="/">
                     <div className='relative  w-5 cursor-pointer opacity-75 h-10 transition hover:opacity-100'>
@@ -83,13 +87,6 @@ const changeLanguage = (code: string) => {
                     onSelect={changeLanguage}
                     placeholder={locale}
                     />
-                {/* <select
-                    onChange={changeLanguage}
-                    defaultValue={locale}
-                    className="opacity-75 text-shadow-sm text-lg bg-transparent tracking-wide">
-                    <option className="usaFlag text-black w-40 h-40" value="en" >EN </option>
-                    <option className="frenchFlag text-black" value="fr">FR</option>
-                </select> */}
                 
             </div>
         </header>
