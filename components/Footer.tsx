@@ -115,7 +115,7 @@ function Footer() {
                     <span>&copy; 2022  </span>
                     <a href="https://github.com/BenyNtb" target="_blank" rel="noopener noreferrer">
                         <span className="bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-                            <em>Beny Ntb</em>
+                            <em>B E N Y .</em>
                         </span>
                     </a>
                 </p>  
