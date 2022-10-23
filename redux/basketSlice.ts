@@ -2,9 +2,10 @@ import {createSlice} from '@reduxjs/toolkit'
 import type {PayloadAction}
 from '@reduxjs/toolkit'
 import {RootState} from './store';
+import {Product as ProductType} from '../typings';
 
 export interface BasketState {
-    items : Product[];
+    items : ProductType[];
 }
 
 const initialState : BasketState = {
@@ -15,7 +16,7 @@ export const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
-        addToBasket: (state : BasketState, action : PayloadAction < Product >) => {
+        addToBasket: (state : BasketState, action : PayloadAction < ProductType >) => {
             state.items = [
                 ...state.items,
                 action.payload
@@ -26,7 +27,7 @@ export const basketSlice = createSlice({
         } >) => {
             const index = state
                 .items
-                .findIndex((item : Product) => item._id === action.payload.id);
+                .findIndex((item : ProductType) => item._id === action.payload.id);
 
             let newBasket = [...state.items];
 
@@ -51,12 +52,12 @@ export const selectBasketItemsWithId = (state : RootState, id : string) => {
     state
         .basket
         .items
-        .filter((item : Product) => item._id);
+        .filter((item : ProductType) => item._id);
 };
 export const selectBasketTotal = (state : RootState) => 
     state
         .basket
         .items
-        .reduce((total : number, item : Product) => (total += item.price), 0);
+        .reduce((total : number, item : ProductType) => (total += item.price), 0);
 
 export default basketSlice.reducer;

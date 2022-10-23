@@ -15,12 +15,13 @@ import Link from 'next/link'
 import en from '../locales/en';
 import fr from '../locales/fr';
 import Footer from '../components/Footer';
+import {Product as ProductType} from '../typings';
 
 function checkout() {
     const items = useSelector(selectBasketItems);
     const router = useRouter();
     const [groupedItemsInBasket, setGroupedItemsInBasket] = useState (
-        {} as { [key: string]: Product[] }
+        {} as { [key: string]: ProductType[] }
     );
     const basketTotal = useSelector(selectBasketTotal);
     const [loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ function checkout() {
         const groupedItems = items.reduce((results, item) => {
             (results[item._id] = results[item._id] || []).push(item);
             return results
-        }, {} as {[key: string]: Product[]});
+        }, {} as {[key: string]: ProductType[]});
         
         setGroupedItemsInBasket(groupedItems);
     }, [items]);

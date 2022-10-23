@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import en from '../locales/en';
 import fr from '../locales/fr';
 import ReactFlagsSelect from "react-flags-select";
+import { StripeProduct } from '../typings';
 
 
 interface Props {
