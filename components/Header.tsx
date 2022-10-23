@@ -23,7 +23,7 @@ const changeLanguage = (code: string) => {
     const prod = (code === "US") ? "EN" : code;
     setSelectedFlag(code);
     const localeLang = {
-        locale: prod
+        locale: prod.toLocaleLowerCase()
         };
     console.log(locale);
     router.push(router.pathname, router.asPath, localeLang);
