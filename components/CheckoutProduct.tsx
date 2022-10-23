@@ -7,15 +7,16 @@ import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import en from '../locales/en';
+import { Product as ProductType } from "../typings";
 import fr from '../locales/fr';
 
 
-interface Props {
-    items : Product[];
+interface CheckoutProductProps {
+    items : ProductType[];
     id : string;
 }
 
-function CheckoutProduct({id, items} : Props) {
+function CheckoutProduct({id, items} : CheckoutProductProps) {
     const dispatch = useDispatch()
     const removeItemFromBasket = () => {
         dispatch(removeFromBasket({id}));
