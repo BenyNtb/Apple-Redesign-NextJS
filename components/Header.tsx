@@ -36,7 +36,7 @@ const [selectedFlag, setSelectedFlag] = useState((locale === "en") ? "US" : loca
                 <Link href="/">
                     <div className='relative  w-5 cursor-pointer opacity-75 h-10 transition hover:opacity-100'>
                         <Image 
-                        src="../public/favicon.ico" 
+                        src="https://rb.gy/vsvv2o" 
                         layout="fill" 
                         objectFit="contain"/>
                     </div>
