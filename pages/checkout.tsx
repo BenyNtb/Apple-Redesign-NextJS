@@ -42,7 +42,7 @@ function checkout() {
     );
     if ((checkoutSession as any).statusCode === 500){
         console.error((checkoutSession as any).message);
-        return;
+        return null;
     }
     //Redirect to checkout
     const stripe = await getStripe()
